@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+.alert-grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "left-icon content";
+}
+.alert-grid-container .left-icon {
+  grid-area: left-icon;
+}
+.alert-grid-container .content {
+  grid-area: content;
+  padding-left: 0.7em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#bucket-title {
+  font-size: 2.4em;
+  font-weight: "bold";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#bucket-info {
+  font-size: 0.8em;
+  padding: 0.5em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#bucket-info .info-item {
+  margin: 0 1em 0 0;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+#bucket-info .info-item svg {
+  color: rgba(0, 0, 0, 0.6);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#bucket-listing {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* padding: 1em; */
+}
+
+#bucket-listing .file-item-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: "left-icon content right-controls";
+  padding: 1em;
+  position: relative;
+}
+
+#bucket-listing .file-item-container:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.file-item-container .left-icon {
+  grid-area: left-icon;
+}
+
+.file-item-container .content {
+  grid-area: content;
+  padding-left: 0.7em;
+}
+
+.file-item-container .right-controls {
+  grid-area: right-controls;
+  padding-left: 0.7em;
+  opacity: 0;
+}
+
+.file-item-container:hover .right-controls {
+  opacity: 1;
+}
+
+.file-item-container .file-info {
+  font-size: 0.8em;
+  position: absolute;
+  bottom: 0.5em;
+  right: 5em;
+  opacity: 0;
+}
+
+.file-item-container .file-info span {
+  padding-left: 5px;
+}
+
+.file-item-container:hover .file-info {
+  opacity: 1;
 }

@@ -1,0 +1,45 @@
+[DONE] POST cloudbucket.com/api/v1/bucket/
+		- IN: {email: "...", "name": "..."}
+		- OUT: {id: "..."}
+		
+	GET cloudbucket.com/api/v1/bucket/id
+		- OUT: {files: [{type: "file", name: ""}]}
+		
+	GET cloudbucket.com/api/v1/bucket/id/path
+		- IN: {id: "...", path: "file"}
+		- OUT: {url: "url_s3"}
+	
+	POST cloudbucket.com/api/v1/bucket/upload
+		- trigger SNS email to owner
+		- IN: {id: "...", path: ".../../name", data: base64}
+		- OUT: {status: 1}
+		
+	POST cloudbucket.com/api/v1/bucket/subscribe
+		- IN: {id: "...", email: ".../../name"}
+		- OUT: {status: 1
+
+
+
+table: buckets
+	id, name, creator_mail, subscribers
+
+
+table: 
+
+
+bucket_id/sds
+bucket_id/sdadsd
+bucket_id/
+
+
+91c0dc57
+
+
+GET /bucket/cosmin/fisier.txt
+
+POST /bucket/cosmin/fisier.txt
+
+POST /bucket/cosmin/upload/fisier.txt
+
+
+https://dxwpvrd1e4.execute-api.us-east-1.amazonaws.com/cloudbucket-dev
