@@ -1,31 +1,36 @@
-import { useState } from 'react';
-import { Container, Button, Typography, TextField, CircularProgress} from '@material-ui/core';
-import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
+import {
+  Container,
+  Button,
+  Typography,
+  TextField,
+  CircularProgress,
+} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 import Alert from "./Alert";
 
-const API_ENDPOINT = "https://dxwpvrd1e4.execute-api.us-east-1.amazonaws.com/cloudbucket-dev";
+const API_ENDPOINT =
+  "https://dxwpvrd1e4.execute-api.us-east-1.amazonaws.com/cloudbucket-dev";
 const API_CRATE_BUCKET = "bucket";
 
 const CreateBucketComponent = () => {
-
   const history = useHistory();
-  const [ name, setName ] = useState("");
-  const [ email, setEmail ] = useState("");
-  const [ requestState, setRequestState ] = useState("default");
-  const [ feedbackMessage, setFeedbackMessage ] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [requestState, setRequestState] = useState("default");
+  const [feedbackMessage, setFeedbackMessage] = useState("");
 
   const updateStateWithValue = (stateCb) => {
     return (e) => {
       stateCb(e.target.value);
-    }
+    };
   };
 
   const submitButtonOnClick = (e) => {
-
     const newBucket = {
       name,
-      email
+      email,
     };
 
     setRequestState("loading");
@@ -33,15 +38,14 @@ const CreateBucketComponent = () => {
     fetch(`${API_ENDPOINT}/${API_CRATE_BUCKET}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newBucket)
-    })
-    .then((e) => {
+      body: JSON.stringify(newBucket),
+    }).then((e) => {
       console.log(e);
-      if(e.status == 200) {
+      if (e.status == 200) {
         e.json().then((data) => {
-          setFeedbackMessage("Bucket successfully created!")
+          setFeedbackMessage("Bucket successfully created!");
           setRequestState("success");
           setTimeout(() => {
             history.push(`/bucket/${data.bucket_id}`);
@@ -53,29 +57,24 @@ const CreateBucketComponent = () => {
           setRequestState("error");
         });
       }
-    })
-  }
+    });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
-      <div style={{padding: "4em 0"}}>
+      <div style={{ padding: "4em 0" }}>
         <Typography component="h1" variant="h5">
           Create a new bucket
         </Typography>
-        {(requestState === "error" || requestState === "success")
-        ?
-          <Alert severity={requestState}>
-            {feedbackMessage}
-          </Alert>
-        :
-            null
-        }
+        {requestState === "error" || requestState === "success" ? (
+          <Alert severity={requestState}>{feedbackMessage}</Alert>
+        ) : null}
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          name="name"
+          name="bucket-name"
           label="Bucket name"
           type="text"
           id="name-input"
@@ -102,21 +101,18 @@ const CreateBucketComponent = () => {
           onClick={submitButtonOnClick}
           disabled={requestState === "loading"}
         >
-          {(requestState === "loading")
-          ? 
+          {requestState === "loading" ? (
             <>
-              <CircularProgress size={15} style={{marginRight: "10px"}}/>   Loading ...
+              <CircularProgress size={15} style={{ marginRight: "10px" }} />{" "}
+              Loading ...
             </>
-            :
-              <span>
-                Create
-              </span>
-          }
+          ) : (
+            <span>Create</span>
+          )}
         </Button>
       </div>
     </Container>
   );
-}
-
+};
 
 export default CreateBucketComponent;

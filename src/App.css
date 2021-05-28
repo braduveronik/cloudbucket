@@ -1,3 +1,7 @@
+#logo {
+  cursor: pointer;
+}
+
 .alert-grid-container {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -29,6 +33,14 @@
 }
 
 #bucket-info .info-item svg {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.empty-bucket {
+  text-align: center;
+  padding: 1em 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  font-size: 0.8em;
   color: rgba(0, 0, 0, 0.6);
 }
 
